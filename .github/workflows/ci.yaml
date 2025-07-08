@@ -1,0 +1,10 @@
+name: CI
+
+on: [push]
+jobs:
+  sast_scan:
+    name: Run SAST Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
