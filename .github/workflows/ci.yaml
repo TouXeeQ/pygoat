@@ -1,6 +1,7 @@
 name: CI
 
 on: [push]
+
 jobs:
   sast_scan:
     name: Run SAST Scan
@@ -14,15 +15,16 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name: install bandit
-        run: pip install bandit
-         
-      - name: run bandit scan
-        run: bandit -ll -ii -r . -f json -o bandit-report.json 
 
-       - name: artifact upload
-         uses: actions/upload-artifact@v3
-         if: always()
-         with: 
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit Scan
+        run: bandit -ll -ii -r . -f json -o bandit-report.json
+
+      - name: Upload Bandit Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
           name: bandit-findings
-          path: bandit-support.json
+          path: bandit-report.json
