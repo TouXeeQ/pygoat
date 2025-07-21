@@ -17,3 +17,5 @@ jobs:
       - name: install bandit
         run: pip install bandit
          
+      - name: run bandit scan
+        run: bandit .
